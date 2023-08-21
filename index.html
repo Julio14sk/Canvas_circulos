@@ -42,16 +42,18 @@
 
        ctx.fillStyle = color;
 
-        canvas.addEventListener("click", (e)=>{
+canvas.addEventListener("click", (e)=>{
             console.log("hola")
             console.log(e)
-|          
+            if(figura){
             ctx.beginPath();
             ctx.arc(e.layerX,e.layerY,50, 0, 2 * Math.PI);
             ctx.fill();
-            ctx.stroke();
-
-        })
+            ctx.stroke();}
+            else{
+            ctx.fillRect(e.layerX-50,e.layerY-50,70,70)
+            ctx.strokeRect(e.layerX-50,e.layerY-50,70,70)
+        }})
 
         canvas.addEventListener("mouseover", (e)=>{
             console.log("mouseover")
@@ -64,6 +66,12 @@
             var o = Math.round, r = Math.random, s = 255;
             return 'rgba(' + o(r()*s) + ',' + o(r()*s) + ',' + o(r()*s) + ')';
             }
+
+        canvas.addEventListener("mouseout", (e)=>{
+            console.log("mouseout")
+            figura=!figura;
+
+        })
 
         /*
         ctx.fillStyle = 'blue';
