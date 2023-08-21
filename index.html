@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tarea Canvas</title>
+
+    <style type="text/css">
+
+        *{
+            margin: 0px;
+            padding: 0px;
+
+        }
+
+        canvas{
+            display: block;
+            background-color: #fff;
+        }
+
+        body{
+            background-color: #ffffff; 
+        }
+
+    </style>
+
+
+</head>
+<body>
+    <h1>Trabajo Julio Cesar Valdovinos Canvas</h1>
+    
+
+    <canvas id="canvas" width="900" height="450" ></canvas>
+    
+    <script>
+
+       var canvas = document.getElementById("canvas");
+       ctx = canvas.getContext('2d');
+       var color = "rgba(13,242,23,0.5)";
+       var figura = true;
+
+       ctx.fillStyle = color;
+
+        canvas.addEventListener("click", (e)=>{
+            console.log("hola")
+            console.log(e)
+|          
+            ctx.beginPath();
+            ctx.arc(e.layerX,e.layerY,50, 0, 2 * Math.PI);
+            ctx.fill();
+            ctx.stroke();
+
+        })
+
+        /*canvas.addEventListener("mouseover", (e)=>{
+            console.log("mouseover")
+            color=random_rgba();
+            ctx.fillStyle=color;
+
+        })
+
+        function random_rgba() {
+            var o = Math.round, r = Math.random, s = 255;
+            return 'rgba(' + o(r()*s) + ',' + o(r()*s) + ',' + o(r()*s) + ')';
+            }
+
+        /*
+        ctx.fillStyle = 'blue';
+        ctx.fillRect(10,10,150,150);
+
+        ctx.fillStyle = 'red';
+        ctx.fillRect(150,150,150,150);
+
+        ctx.fillStyle = 'rgba(255, 99, 71, 0.4)';
+        ctx.fillRect(290,290,150,150);
+
+
+        ctx.lineWidth = 5;
+        ctx.fillStyle = 'red'
+        ctx.beginPath();   
+        ctx.moveTo(195,20);  
+        ctx.lineTo(195,75);
+        ctx.lineTo(135,75);
+        ctx.fill();
+        ctx.closePath();
+        ctx.stroke();
+
+        ctx.beginPath();   
+        ctx.moveTo(200,20);  
+        ctx.lineTo(200,115);
+        ctx.closePath();
+        ctx.stroke();
+
+        ctx.fillStyle = 'purple'
+        ctx.beginPath();
+        ctx.arc(295,150,40,0,2*Math.PI);
+        ctx.fill();
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.arc(395,150,40,0,2*Math.PI);
+        ctx.stroke();
+
+        ctx.fillStyle = 'purple'
+        ctx.font = "80px Arial"
+        ctx.fillText("Hola mundo",400,60);
+
+        ctx.strokeStyle = 'blue'
+        ctx.strokeText("Hola mundo",407,58);
+
+        var grd = ctx.createLinearGradient(680,100,3,170);
+        grd.addColorStop(0,'purple');
+        grd.addColorStop(1,'blue');
+
+        ctx.fillStyle = grd;
+        ctx.fillRect(450,100,250,180);
+
+        var grd2 = ctx.createRadialGradient(240,320,5,230,340,50);
+        grd2.addColorStop(0,'red');
+        grd2.addColorStop(1,'black');
+
+        ctx.fillStyle = grd2;
+        ctx.fillRect(150,290,200,100);
+
+        var img=document.getElementById()*/
+    </script>
+
+</body>
+</html>
