@@ -37,6 +37,7 @@
 
        var canvas = document.getElementById("canvas");
        ctx = canvas.getContext('2d');
+        let pressed = false;
        var color = "rgba(13,242,23,0.5)";
        var figura = true;
 
@@ -71,6 +72,22 @@ canvas.addEventListener("click", (e)=>{
             console.log("mouseout")
             figura=!figura;
 
+        })
+
+        canvas.addEventListener('mousemove', (e) => {
+            if (pressed) {
+                ctx.beginPath();
+                ctx.arc(e.layerX, e.layerY, 5, 0, 2 * Math.PI);
+                ctx.fill();
+                ctx.stroke();
+                ctx.closePath();
+            }
+        });
+        canvas.addEventListener('mousedown', (e) => {
+            pressed = true;
+        });
+        canvas.addEventListener('mouseup', (e) => {
+            pressed = false;
         })
 
         /*
