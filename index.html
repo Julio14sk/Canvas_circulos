@@ -58,13 +58,17 @@
 
             }
 
-            ctx.fillStyle = random_rgba();
+            
             repaint();
 
         })
 
         function repaint() {
+            ctx.fillStyle = "white";
+            ctx.fillRect(0, 0, 900, 450);
 
+            
+            ctx.fillStyle = random_rgba();
             ctx.fillRect(x, y, 70, 70);
             ctx.strokeRect(x, y, 70, 70);
         }
