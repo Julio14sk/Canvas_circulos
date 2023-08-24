@@ -37,7 +37,31 @@
 
        var canvas = document.getElementById("canvas");
        ctx = canvas.getContext('2d');
-        let pressed = false;
+        var x=225,y=225;
+
+        document.addEventListener("keydown", (e) => {
+            console.log(e)
+
+            
+            x = Math.floor(Math.random() * 450);
+            y = Math.floor(Math.random() * 450);
+            ctx.fillStyle=random_rgba();
+            repaint();
+
+        })
+
+        function repaint() {
+     
+            ctx.fillRect(x, y, 70, 70);
+            ctx.strokeRect(x, y, 70, 70);
+        }
+
+        function random_rgba() {
+             var o = Math.round, r = Math.random, s = 255;
+             return 'rgba(' + o(r() * s) + ',' + o(r() * s) + ',' + o(r() * s) + ')';
+         }
+
+       /* let pressed = false;
        var color = "rgba(13,242,23,0.5)";
        var figura = true;
 
