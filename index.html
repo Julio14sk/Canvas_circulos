@@ -38,36 +38,38 @@
        var canvas = document.getElementById("canvas");
        ctx = canvas.getContext('2d');
          var x = 225, y = 225;
+var dir = 0;
 
         document.addEventListener("keydown", (e) => {
-            console.log(e)
 
             switch (e.keyCode) {
                 case 87:
-                    y -= 10;
+                    dir = e.keyCode;
+                    
                     break;
                 case 83:
-                    y += 10;
+                    dir = e.keyCode;
+                    
                     break;
                 case 68:
-                    x += 10;
+                    dir = e.keyCode;
+                    
                     break;
                 case 65:
-                    x -= 10;
+                    dir = e.keyCode;
+                    
                     break;
 
             }
-
-            
-            repaint();
+            //update();
 
         })
 
         function repaint() {
+
             ctx.fillStyle = "white";
             ctx.fillRect(0, 0, 900, 450);
 
-            
             ctx.fillStyle = random_rgba();
             ctx.fillRect(x, y, 70, 70);
             ctx.strokeRect(x, y, 70, 70);
@@ -78,6 +80,41 @@
             return 'rgba(' + o(r() * s) + ',' + o(r() * s) + ',' + o(r() * s) + ')';
         }
 
+        function update() {
+
+            switch (dir) {
+                case 87:
+                    y -= 10;
+                    if(y < -50){y = 550}
+                    break;
+                case 83:
+                    y += 10;
+                    if(y > 550){y = -50}
+                    break;
+                case 68:
+                    x += 10;
+                    if(x > 550){x = -50}
+                    break;
+                case 65:
+                    x -= 10;
+                    if(x < -50){x = 550}
+                    break;
+
+            }
+            repaint();
+            window.requestAnimationFrame(update);
+
+        }
+        window.requestAnimationFrame = (function () {
+            return window.requestAnimationFrame ||
+                window.webkitRequestAnimationFrame ||
+                window.mozRequestAnimationFrame ||
+                function (callback) {
+                    window.setTimeout(callback, 17);
+                };
+        }());
+
+        window.requestAnimationFrame(update);
         
        /* let pressed = false;
        var color = "rgba(13,242,23,0.5)";
