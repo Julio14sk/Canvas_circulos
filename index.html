@@ -31,7 +31,7 @@
     <h1>Trabajo Julio Cesar Valdovinos Canvas</h1>
     
 
-    <canvas id="canvas" width="900" height="450" ></canvas>
+    <canvas id="canvas" width="500" height="500" ></canvas>
     
     <script>
 
@@ -39,25 +39,27 @@
        ctx = canvas.getContext('2d');
          var x = 225, y = 225;
 var dir = 0;
+var t_x = 350, t_y = 350;
+        //var t_x = 100, t_y = 30;
 
         document.addEventListener("keydown", (e) => {
 
             switch (e.keyCode) {
                 case 87:
                     dir = e.keyCode;
-                    
+
                     break;
                 case 83:
                     dir = e.keyCode;
-                    
+
                     break;
                 case 68:
                     dir = e.keyCode;
-                    
+
                     break;
                 case 65:
                     dir = e.keyCode;
-                    
+
                     break;
 
             }
@@ -68,38 +70,50 @@ var dir = 0;
         function repaint() {
 
             ctx.fillStyle = "white";
-            ctx.fillRect(0, 0, 900, 450);
+            ctx.fillRect(0, 0, 500, 500);
 
             ctx.fillStyle = random_rgba();
-            ctx.fillRect(x, y, 70, 70);
-            ctx.strokeRect(x, y, 70, 70);
+            ctx.fillRect(x, y, 50, 50);
+            ctx.strokeRect(x, y, 50, 50);
+
+            ctx.fillStyle = 'black';
+            ctx.fillRect(t_x, t_y, 40, 40);
+
+           // ctx.fillStyle = 'Red';
+           //  ctx.fillRect(w_x, w_y, 40, 40);
         }
 
-        function random_rgba() {
-            var o = Math.round, r = Math.random, s = 255;
-            return 'rgba(' + o(r() * s) + ',' + o(r() * s) + ',' + o(r() * s) + ')';
-        }
+
 
         function update() {
 
             switch (dir) {
                 case 87:
                     y -= 10;
-                    if(y < -50){y = 550}
+                    if (y < -50) { y = 550 }
                     break;
                 case 83:
                     y += 10;
-                    if(y > 550){y = -50}
+                    if (y > 550) { y = 0 }
                     break;
                 case 68:
                     x += 10;
-                    if(x > 550){x = -50}
+                    if (x > 550) { x = 0 }
                     break;
                 case 65:
                     x -= 10;
-                    if(x < -50){x = 550}
+                    if (x < -50) { x = 550 }
                     break;
 
+            }
+
+            if (x < t_x + 40 &&  
+            x + 50 > t_x &&  
+              y < t_y + 40 &&  
+                y + 50 > t_y) {
+
+                t_x = Math.random()*(460);
+                t_y = Math.random()*(460);
             }
             repaint();
             window.requestAnimationFrame(update);
@@ -115,6 +129,11 @@ var dir = 0;
         }());
 
         window.requestAnimationFrame(update);
+
+        function random_rgba() {
+            var o = Math.round, r = Math.random, s = 255;
+            return 'rgba(' + o(r() * s) + ',' + o(r() * s) + ',' + o(r() * s) + ')';
+        }
         
        /* let pressed = false;
        var color = "rgba(13,242,23,0.5)";
