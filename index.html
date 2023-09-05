@@ -37,12 +37,21 @@
 
        var canvas = document.getElementById("canvas");
        ctx = canvas.getContext('2d');
-        var dir = 0;
+         var dir = 0;
         var w_x = 100, w_y = 70;
         var speed = 10;
         let walls = [];
         let pause = false;
         let score = 0;
+        let image = new Image(50, 50);
+        image.src = "mario.png";
+        let image2 = new Image(40, 40);
+        image2.src = "moneda.png";
+        let audio = new Audio();
+        audio.src = "mario-coin.mp3"
+        let audio2 = new Audio();
+        audio2.src = "pausa-mario64.mp3"
+
 
         class Rectangulo {
             constructor(x, y, w, h, c) {
@@ -54,9 +63,11 @@
             }
 
             paint(ctx) {
+                ctx.drawImage(image2, target.x, target.y, 40, 40);
                 ctx.fillStyle = this.c;
                 ctx.fillRect(this.x, this.y, this.w, this.h);
-                ctx.strokeRect(this.x, this.y, this.w, this.h);
+                //ctx.strokeRect(this.x, this.y, this.w, this.h);
+
             }
 
             seTocan(target) {
@@ -73,7 +84,7 @@
         }
 
         const player = new Rectangulo(255, 255, 50, 50, "black");
-        const target = new Rectangulo(350, 350, 40, 40, "black");
+        const target = new Rectangulo(350, 350, 40, 40, "white");
         walls.push(new Rectangulo(100, 70, 200, 30, "red"));
         walls.push(new Rectangulo(100, 420, 200, 30, "red"));
 
@@ -98,6 +109,7 @@
                     break;
                 case 32:
                     pause = !pause;
+                    audio2.play();
                     break;
 
             }
@@ -136,6 +148,7 @@
                     target.y = Math.random() * (460);
 
                     score += 5;
+                    audio.play();
 
                 }
 
@@ -180,7 +193,8 @@
                 ctx.fillText("score:" + score, 20, 30);
 
                 player.c = random_rgba();
-                player.paint(ctx)
+                //player.paint(ctx)
+                ctx.drawImage(image, player.x, player.y, 50, 50);
 
                 target.paint(ctx)
 
